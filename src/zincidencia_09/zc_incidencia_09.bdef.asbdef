@@ -1,0 +1,18 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_INCIDENCIA_09 alias Incidencia
+{
+  use create;
+  use update;
+  use delete;
+
+  use action CerrarIncidencia;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+}

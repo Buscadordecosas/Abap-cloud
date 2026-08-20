@@ -1,32 +1,13 @@
-CLASS zcl_test_maquina_chicles_09 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_TEST_MAQUINA_CHICLES_09 definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    INTERFACES if_oo_adt_classrun .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_test_maquina_chicles_09 IMPLEMENTATION.
-
-
-  METHOD if_oo_adt_classrun~main.
-    data(lo_maquina) = NEW zcl_maquina_chicles_09( iv_can_inicial = 2 ).
-    data(lv_cambio) = lo_maquina->vender_chicle( 25 ).
-    out->write( |El cambio es { lv_cambio } cent| ).
-
-    lv_cambio = lo_maquina->vender_chicle( 50 ).
-    out->write( |El cambio es { lv_cambio } cent| ).
-
-    lv_cambio = lo_maquina->vender_chicle( 25 ).
-    out->write( |El cambio es { lv_cambio } cent| ).
-
-
-
-  ENDMETHOD.
+CLASS ZCL_TEST_MAQUINA_CHICLES_09 IMPLEMENTATION.
 ENDCLASS.

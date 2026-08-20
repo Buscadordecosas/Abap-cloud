@@ -1,0 +1,136 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Incidencia',
+    typeNamePlural: 'Incidencias',
+    title: { type: #STANDARD, value: 'Titulo' },
+    description: { type: #STANDARD, value: 'IdIncidencia' }
+  },
+  presentationVariant: [ {
+    sortOrder: [
+      { by: 'Prioridad', direction: #ASC },
+      { by: 'FechaLimite', direction: #ASC }
+    ]
+  } ]
+}
+annotate view ZC_INCIDENCIA_09 with
+{
+  -- -------------------------------------------------------------------------
+  -- FACETAS (Secciones de la página de detalle)
+  -- -------------------------------------------------------------------------
+  @UI.facet: [
+    {
+      id: 'GeneralInfo',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Información general',
+      position: 10
+    },
+    {
+      id: 'FechasInfo',
+      purpose: #STANDARD,
+      type: #FIELDGROUP_REFERENCE,
+      label: 'Fechas',
+      targetQualifier: 'GrupoFechas',
+      position: 20
+    }
+  ]
+
+  -- -------------------------------------------------------------------------
+  -- CAMPOS Y CONFIGURACIÓN DE PANTALLA
+  -- -------------------------------------------------------------------------
+
+  @EndUserText.label: 'Identificador'
+  @UI: {
+    lineItem:       [ { position: 10 } ],
+    selectionField: [ { position: 10 } ],
+    identification: [ { position: 10 } ]
+  }
+  IdIncidencia;
+
+  @EndUserText.label: 'Título'
+  @UI: {
+    lineItem:       [ { position: 20 } ],
+    selectionField: [ { position: 20 } ],
+    identification: [ { position: 20 } ]
+  }
+  Titulo;
+
+  @EndUserText.label: 'Descripción'
+  @UI: {
+    identification: [ { position: 30 } ]
+  }
+  Descripcion;
+
+  @EndUserText.label: 'Categoría'
+  @UI: {
+    lineItem:       [ { position: 30 } ],
+    selectionField: [ { position: 30 } ],
+    identification: [ { position: 40 } ]
+  }
+  Categoria;
+
+  @EndUserText.label: 'Prioridad'
+  @UI: {
+    lineItem:       [ { position: 40 } ],
+    selectionField: [ { position: 40 } ],
+    identification: [ { position: 50 } ]
+  }
+  Prioridad;
+
+@EndUserText.label: 'Estado'
+  @UI: {
+    lineItem:       [ 
+      { position: 50 },
+      { type: #FOR_ACTION, dataAction: 'CerrarIncidencia', label: 'Cerrar Incidencia' }
+    ],
+    selectionField: [ { position: 50 } ],
+    identification: [ 
+      { position: 60 },
+      { type: #FOR_ACTION, dataAction: 'CerrarIncidencia', label: 'Cerrar Incidencia' }
+    ]
+  }
+  Estado;
+
+  @EndUserText.label: 'Responsable'
+  @UI: {
+    lineItem:       [ { position: 60 } ],
+    selectionField: [ { position: 60 } ],
+    identification: [ { position: 70 } ]
+  }
+  Responsable;
+
+  @EndUserText.label: 'Fecha de alta'
+  @UI: {
+    fieldGroup:     [ { qualifier: 'GrupoFechas', position: 10 } ]
+  }
+  FechaAlta;
+
+  @EndUserText.label: 'Fecha límite'
+  @UI: {
+    lineItem:       [ { position: 70 } ],
+    fieldGroup:     [ { qualifier: 'GrupoFechas', position: 20 } ]
+  }
+  FechaLimite;
+
+  @EndUserText.label: 'Fecha de cierre'
+  @UI: {
+    fieldGroup:     [ { qualifier: 'GrupoFechas', position: 30 } ]
+  }
+  FechaCierre;
+
+  -- -------------------------------------------------------------------------
+  -- CAMPOS ADMINISTRATIVOS OCULTOS
+  -- -------------------------------------------------------------------------
+  @UI.hidden: true
+  CreatedBy;
+
+  @UI.hidden: true
+  LastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+}

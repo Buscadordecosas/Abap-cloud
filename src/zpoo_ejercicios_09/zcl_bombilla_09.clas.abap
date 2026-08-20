@@ -1,25 +1,13 @@
-CLASS zcl_bombilla_09 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_BOMBILLA_09 definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-  DATA esta_encendida TYPE abap_bool.
-
-  METHODS: encender.
-
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_bombilla_09 IMPLEMENTATION.
-
-    METHOD encender.
-        esta_encendida = abap_true.
-    ENDMETHOD.
-
-
+CLASS ZCL_BOMBILLA_09 IMPLEMENTATION.
 ENDCLASS.

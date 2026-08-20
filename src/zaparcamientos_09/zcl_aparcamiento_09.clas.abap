@@ -1,26 +1,13 @@
-CLASS zcl_aparcamiento_09 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_APARCAMIENTO_09 definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-  METHODS calcular_tarifa
-  IMPORTING iv_horas_estacionado TYPE i
-  EXPORTING ev_minutos_totales   TYPE i
-  RETURNING VALUE(rv_precio)     TYPE zDECIMALS2.
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_aparcamiento_09 IMPLEMENTATION.
-  METHOD calcular_tarifa.
-        rv_precio = iv_horas_estacionado * '1.5'.
-        ev_minutos_totales = iv_horas_estacionado * 60.
-
-  ENDMETHOD.
-
+CLASS ZCL_APARCAMIENTO_09 IMPLEMENTATION.
 ENDCLASS.

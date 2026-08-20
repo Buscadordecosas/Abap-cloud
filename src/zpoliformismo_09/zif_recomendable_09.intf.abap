@@ -1,6 +1,4 @@
-INTERFACE zif_recomendable_09
-  PUBLIC .
-    METHODS recomendar RETURNING VALUE(rv_recomendar) type string.
+interface ZIF_RECOMENDABLE_09
+  public .
 
-
-ENDINTERFACE.
+endinterface.

@@ -1,0 +1,71 @@
+managed implementation in class ZBP_R_INCIDENCIA_09 unique;
+strict ( 2 );
+with draft;
+extensible;
+
+define behavior for ZR_INCIDENCIA_09 alias ZrIncidencia09
+persistent table ZINCIDENCIA_09
+extensible
+draft table ZINCIDENCIA_09_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+{
+//  -- 1. Obligatorios solo al crear (IdIncidencia y Titulo)
+  field ( mandatory : create )
+    IdIncidencia,
+    Titulo;
+
+//  -- 2. Solo lectura absoluta (Campos administrativos y calculados por lógica de negocio)
+  field ( readonly )
+    FechaCierre,
+    CreatedBy,
+    LastChangedBy,
+    LocalLastChangedAt,
+    LastChangedAt;
+
+//  -- 3. Solo lectura en modificación (IdIncidencia no se puede editar tras crear)
+  field ( readonly : update )
+    IdIncidencia,
+    Titulo;
+  create;
+  update ( features : instance ); // Habilita el control para bloquear la edición si está cerrada
+  delete;
+//  -- Validaciones de los dominios al guardar
+  validation ValidarValoresDominio on save
+  {
+    create;
+    update;
+    field Prioridad, Estado;
+  }
+
+  determination InicializarIncidencia on modify { create; }
+
+  action ( authorization : update ) CerrarIncidencia result [1] $self;
+
+  validation validarFechas on save { field FechaLimite, FechaCierre; }
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZINCIDENCIA_09 corresponding extensible
+  {
+    IdIncidencia        = ID_INCIDENCIA;
+    Titulo              = TITULO;
+    Descripcion         = DESCRIPCION;
+    Categoria           = CATEGORIA;
+    Prioridad           = PRIORIDAD;
+    Estado              = ESTADO;
+    Responsable         = RESPONSABLE;
+    FechaAlta           = FECHA_ALTA;
+    FechaLimite         = FECHA_LIMITE;
+    FechaCierre         = FECHA_CIERRE;
+    CreatedBy           = CREATED_BY;
+    LastChangedBy       = LAST_CHANGED_BY;
+    LocalLastChangedAt  = LOCAL_LAST_CHANGED_AT;
+    LastChangedAt       = LAST_CHANGED_AT;
+  }
+}

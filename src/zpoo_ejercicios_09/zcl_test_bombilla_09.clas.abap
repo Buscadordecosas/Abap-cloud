@@ -1,26 +1,13 @@
-CLASS zcl_test_bombilla_09 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCL_TEST_BOMBILLA_09 definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-
-    INTERFACES if_oo_adt_classrun .
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zcl_test_bombilla_09 IMPLEMENTATION.
-
-
-  METHOD if_oo_adt_classrun~main.
-
-    DATA(lo_bombilla) = new zcl_bombilla_09( ).
-
-    lo_bombilla->encender( ).
-
-    out->write( |La bombilla = { lo_bombilla->esta_encendida }| ).
-  ENDMETHOD.
+CLASS ZCL_TEST_BOMBILLA_09 IMPLEMENTATION.
 ENDCLASS.
